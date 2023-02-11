@@ -1,0 +1,109 @@
+1-What is the command to create a new Laravel project?
+2-What is the name of the file used for routing in Laravel?
+3-How do you create a new migration in Laravel?
+4-How do you define a new route in Laravel?
+5-How do you access the current authenticated user in a controller?
+6-What is the purpose of a controller in Laravel?
+7-How can you use a model in Laravel?
+8-How can you use a view in Laravel?
+9-How do you create a new database seed in Laravel?
+10-What is the command to run database migrations in Laravel?
+
+
+
+ 		$table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
+
+1-composer create-project --prefer-dist laravel/laravel projectname
+2-web.php
+3-php artisan make:migration create_table_name
+4-Route::get('/', function () { return view('welcome'); });
+5-$user = auth()->user();
+6-A controller is used to handle HTTP requests and return a response.
+7-$users = App\User::all();
+8-return view('welcome');
+9-php artisan make:seeder UsersTableSeeder
+10-php artisan migrate
+
+about:  5-$user = auth()->user();
+
+For example, you might use auth()->user() in a controller to access the currently authenticated user's email address: $email = auth()->user()->email;
+
+It's important to note that this function will return null if no user is currently authenticated.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+a laravel controller is a file where we define a function and it's logic and then we execute it in router when the router in fired 
+example :
+we have a controller named myController , we define a method named controllerMethod which echo 'hello from controller' , 
+after creating a route called "firecontroller" " route:get('firecontroller' [myController:class,'controllerMethod'] ) ", controllerMethod method is gonna be executed .
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+In Laravel, middleware provides a convenient mechanism for filtering HTTP requests entering your application. For example, you may need to verify that the user is authenticated before they can access certain areas of your application.
+
+Examples of middleware in Laravel include:
+
+1. Authentication: Verifies that the user is authenticated before allowing access to certain routes.
+
+2. CORS: Allows requests from other domains (Cross-Origin Resource Sharing).
+
+3. CSRF: Validates requests to protect against Cross-Site Request Forgery attacks.
+
+4. Rate Limiting: Prevents a user from making too many requests in a given period of time.
+
+5. Encryption: Encrypts the data that is stored in the session.
+------------------------------------------------------------------------------------
+To add a new column to a table wen need to create a new migration file using 
+~//:php artisan make::migration add_price_to_tablename_table
+
+Then we add the the columns details .
+
+-------------------------------------------------------------------------------------
+Eloquent Models in Laravel provide several methods for querying and manipulating data in the database. Some common methods include:
+
+--all(): retrieves all records from the associated database table.
+
+--find($id): retrieves a single record by its primary key ID.
+
+--where($column, $operator, $value): adds a basic where clause to the query, used to filter records based on specific conditions.
+
+--orWhere($column, $operator, $value): adds an OR where clause to the query.
+
+--first(): retrieves the first record from the query.
+
+--get(): retrieves all records from the query.
+
+--create($attributes): creates a new record in the database with the specified attributes.
+ 
+--update($attributes): updates an existing record in the database with the specified attributes.
+
+--delete(): deletes the record from the database.
+
+--save(): saves the model instance to the database, either creating a new record or updating an existing one, depending on whether the model has a primary key value.
+
+In addition to these methods, Eloquent provides several other features such as relationships between models, eager loading, and more, which can make it easier to perform complex database operations with ease.
+
+
+-------------------------------!!!!!!!!!!!!!!!!!!!!!!-----------------------------------------------------------
+[StudentsController::class, 'index'] instead of "StudentsController@index" worked perfectly
+------------------------------------------------------------------------------------------
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Generates a URL to the specified route
+$url = url('route-name');
+
+// Generates a URL to a named route
+$url = route('route-name');
+
+// Generates a URL to a controller action
+$url = action('ControllerName@actionName');
+
+// Generates a URL to a path
+$url = url('/path');
+
+
+

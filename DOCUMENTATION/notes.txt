@@ -1,0 +1,8 @@
+in admin controller i'm gonna fetch data fro DB and return them 
+in a view 
+public function admin(){
+
+FETCH;
+return view('targeted_view',[fetched data])
+
+}

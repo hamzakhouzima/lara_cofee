@@ -1,0 +1,39 @@
+In a view, you can use auth()->user() to check if a user is logged in and display a different navigation bar 
+for logged-in users:
+---------------------------------------------------------------------------------------------------------
+@if(auth()->user())
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+@else
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+@endif
+---------------------------------------------------------------------------------------------------------
+In a controller, you can use auth()->user() to retrieve the currently authenticated user's ID and use it 
+to fetch data from the database:
+---------------------------------------------------------------------------------------------------------
+public function show($id)
+{
+    $user = auth()->user();
+    $posts = Post::where('user_id', $user->id)->get();
+    return view('posts.index', compact('posts'));
+}
+
+---------------------------------------------------------------------------------------------------------
+You can use auth()->user() to check if a user has a certain role before allowing them to access a certain
+page or perform a certain action:
+---------------------------------------------------------------------------------------------------------
+if (auth()->user()->hasRole('admin')) {
+    // do something
+} else {
+    return redirect('/home');
+}
+---------------------------------------------------------------------------------------------------------
+You can use auth()->user() to get the currently authenticated user's
+ email address and use it to send an email:
+---------------------------------------------------------------------------------------------------------
+$user = auth()->user();
+$email = $user->email;
+Mail::to($email)->send(new WelcomeEmail());
+
+---------------------------------------------------------------------------------------------------------
